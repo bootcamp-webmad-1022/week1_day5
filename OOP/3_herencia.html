@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+
+        class Person {
+
+            constructor(nameValue, ageValue, bankValue, emailValue) {
+                this.name = nameValue
+                this.age = ageValue
+                this.bank = bankValue
+                this.email = emailValue
+            }
+
+            updateEmail(newEmail) {
+                this.email = newEmail
+            }
+        }
+
+
+        // instancia
+        const person1 = new Person('Sandra', 33, '876486745874', 'sandrita99_cleopatresa@msn.es')
+        console.log('Me llamo', person1.name, 'y mi email es', person1.email)
+
+        person1.updateEmail('sandra99@msn.es')
+        console.log('Me llamo', person1.name, 'y mi email es', person1.email)
+
+
+        console.log('---------')
+
+
+
+
+
+
+        class Player extends Person {
+
+            constructor(nameValue, ageValue, bankValue, emailValue, nickValue) {
+                super(nameValue, ageValue, bankValue, emailValue)
+                this.nick = nickValue
+                this.tokens = 100
+            }
+            rechargeTokens(extraTokens) {
+                this.tokens += extraTokens
+                console.log('HAS RECARGADO', extraTokens, 'TOKENS')
+            }
+
+        }
+
+
+        const player1 = new Player('Ger', 43, '984689746', 'ger@msn.es', 'germantastico')
+
+        console.log('me llamo', player1.name, 'pero mi nick es', player1.nick)
+        console.log('Ahora tengo', player1.tokens, 'tokens')
+
+        player1.rechargeTokens(50)
+
+        console.log('Ahora tengo', player1.tokens, 'tokens')
+
+
+
+
+
+
+        console.log('---------')
+
+
+        class Witch extends Player {
+
+            constructor(nameValue, ageValue, bankValue, emailValue, nickValue, spellValue) {
+                super(nameValue, ageValue, bankValue, emailValue, nickValue)
+                this.spell = spellValue
+                this.lives = 5
+            }
+
+            makeSpell() {
+                console.error('¡OH, NO! La bruja', this.nick, 'te atacó con', this.spell)
+            }
+
+            buyLives(extraLives) {
+
+                const totalCost = extraLives * 50
+
+                if (this.tokens >= totalCost) {
+                    this.lives += extraLives
+                    this.tokens -= totalCost
+                } else {
+                    console.error('INVIABLE, SOLO TIENES', this.tokens, 'TOKENS Y NECESITARÍAS', totalCost, 'TOKENS')
+                }
+            }
+        }
+
+        const witch1 = new Witch('Charini', 44, '94768745', 'usgis@msn.es', 'Piruja', 'Pócima apestosa')
+        witch1.makeSpell()
+
+        console.log('Soy la bruja', witch1.nick, 'aunque en realidad me llamo', witch1.name, 'y tengo', witch1.lives, 'vidas')
+
+        witch1.buyLives(20)
+        witch1.rechargeTokens(5000)
+        witch1.buyLives(20)
+
+
+        console.log('Soy la bruja', witch1.nick, 'aunque en realidad me llamo', witch1.name, 'y tengo', witch1.lives, 'vidas')
+
+
+
+
+        console.log('---------')
+
+
+
+        class Gnome extends Player {
+
+            constructor(nameValue, ageValue, bankValue, emailValue, nickValue, attackValue) {
+                super(nameValue, ageValue, bankValue, emailValue, nickValue)
+                this.attack = attackValue
+                this.lives = 12
+            }
+
+            makeAttack() {
+                console.error('¡OH, NO! El gnomo', this.nick, 'te atacó con', this.attack)
+            }
+        }
+
+
+        const gnome1 = new Gnome('Raul', 44, '978464', 'shumorenikoh@msn.es', 'David', 'escupitajos y jucios de valor')
+
+        gnome1.makeAttack()
+
+
+
+
+    </script>
+</body>
+
+</html>

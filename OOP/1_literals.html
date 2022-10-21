@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        const person = {
+            name: 'German',
+            lastName: 'Álvarez',
+            age: 36,
+            height: 1.87,
+            celiac: false,
+            weight: 80,
+            hobbies: ['ski', 'gadgets', 'rave'],
+            job: {
+                title: 'Lead Instructor',
+                school: 'Ironhack Madrid',
+                active: true,
+                salary: undefined
+            },
+            subscriptions: [
+                {
+                    name: 'Netflix',
+                    cost: 12.99,
+                    active: true
+                },
+                {
+                    name: 'Glovo Prime',
+                    cost: 9.99,
+                    active: true
+                },
+                {
+                    name: 'HBO',
+                    cost: 10.99,
+                    active: true
+                }
+            ],
+            learnNewHobby(newHobby) {
+                this.hobbies.push(newHobby)
+            },
+            subscribe(subscriptionName, subscriptionPrice, activeStatus = true) {
+                const newSubscription = { name: subscriptionName, cost: subscriptionPrice, active: activeStatus }
+                this.subscriptions.push(newSubscription)
+            },
+            getSubscriptionsSum() {
+                let sum = 0
+                for (let i = 0; i < this.subscriptions.length; i++) {
+                    sum += this.subscriptions[i].cost
+                }
+                return sum
+            }
+        }
+
+
+        // Property access (getter and setter)
+        console.log(`Mi nombre es ${person.name}`)
+        person.weight++
+
+        person.learnNewHobby('beer')
+        console.log(`Ahora mis hobbies son:`, person.hobbies)
+
+        person.subscribe('Prime', 9.99)
+        console.log(`Ahora mis suscripciones son:`, person.subscriptions)
+
+        const cost = person.getSubscriptionsSum()
+        console.log(`Me estoy dejando al mes`, cost, '€ en suscripciones :D')
+
+    </script>
+</body>
+
+</html>
